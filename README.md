@@ -43,7 +43,7 @@ automation-landing-page/
 
 1. Clonez ce dépôt
 ```
-git clone https://github.com/Dallolz/nexai-landing-page.git
+git clone https://github.com/dallolz/landing-page.git
 ```
 
 2. Ouvrez le fichier `index.html` dans votre navigateur pour un développement local
