@@ -1,189 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutomateAI - Intelligent Business Solutions</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-
-        body {
-            overflow-x: hidden;
-            background-color: #0a0a0a;
-            color: #fff;
-        }
-
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -1;
-        }
-
-        .content {
-            position: relative;
-            z-index: 1;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px 5%;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 2;
-            transition: all 0.3s ease;
-        }
-
-        .scrolled {
-            background-color: rgba(10, 10, 10, 0.9);
-            padding: 15px 5%;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #0de1ec;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 40px;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #0de1ec;
-        }
-
-        .cta-button {
-            background: linear-gradient(45deg, #0de1ec, #2563eb);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(13, 225, 236, 0.4);
-        }
-
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 0 10%;
-        }
-
-        .hero h1 {
-            font-size: 54px;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            max-width: 800px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            max-width: 600px;
-            margin-bottom: 30px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .highlight {
-            color: #0de1ec;
-        }
-
-        .section {
-            min-height: 100vh;
-            padding: 100px 10%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .section-title {
-            font-size: 36px;
-            margin-bottom: 60px;
-            position: relative;
-        }
-
-        .section-title:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -15px;
-            width: 50px;
-            height: 3px;
-            background: linear-gradient(45deg, #0de1ec, #2563eb);
-        }
-
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .service-card {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 30px;
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(13, 225, 236, 0.2);
-        }
-
-        .service-icon {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #0de1ec;
-        }
-
-        .service-title {
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-
-        .footer {
-            padding: 60px 10%;
-            background-color: #0a0a0a;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.7);
-        }
-    </style>
+    <title>NexAI - Transformation Digitale & Automatisation Intelligente</title>
+    <meta name="description" content="Solutions d'automatisation et d'IA pour les entreprises françaises. Audits, conseils et déploiement pour transformer vos processus métier.">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 </head>
 <body>
     <!-- Three.js Canvas Container -->
@@ -193,187 +18,318 @@
     <div class="content">
         <!-- Navigation -->
         <nav id="navbar">
-            <a href="#" class="logo">AutomateAI</a>
-            <ul class="nav-links">
+            <a href="#" class="logo">NexAI</a>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#methodologie">Méthodologie</a></li>
+                <li><a href="#cas-usage">Cas d'Usage</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><button class="cta-button">Get Started</button></li>
+                <li><button class="cta-button">Démarrer</button></li>
             </ul>
         </nav>
 
         <!-- Hero Section -->
         <section class="hero" id="hero">
-            <h1>Unlock Your Business Potential with <span class="highlight">AI-Powered Automation</span></h1>
-            <p>We help companies optimize workflows, automate repetitive tasks, and implement AI solutions to focus on high-value activities that drive growth.</p>
-            <button class="cta-button">Discover How</button>
+            <div class="hero-content">
+                <h1>Libérez le potentiel de votre entreprise grâce à <span class="highlight">l'Automatisation Intelligente</span></h1>
+                <p>Nous accompagnons les entreprises françaises dans leur transition digitale en optimisant les processus métier, en automatisant les tâches répétitives, et en implémentant des solutions d'IA pour vous permettre de vous concentrer sur les activités à forte valeur ajoutée.</p>
+                <div class="hero-cta">
+                    <button class="cta-button primary">Découvrir Comment</button>
+                    <button class="cta-button secondary">Nos Solutions</button>
+                </div>
+            </div>
+            <div class="hero-scroll-indicator">
+                <span>Découvrir</span>
+                <div class="scroll-arrow"></div>
+            </div>
         </section>
 
         <!-- Services Section -->
         <section class="section" id="services">
-            <h2 class="section-title">Our Services</h2>
-            <div class="services">
+            <div class="section-header">
+                <h2 class="section-title">Nos Services</h2>
+                <p class="section-subtitle">Une approche complète pour transformer votre entreprise</p>
+            </div>
+            <div class="services-container">
                 <div class="service-card" data-scroll>
-                    <div class="service-icon">🤖</div>
-                    <h3 class="service-title">AI Integration</h3>
-                    <p>Implement AI assistants that can handle up to 95% of customer inquiries through your existing FAQ systems.</p>
+                    <div class="service-icon">
+                        <img src="assets/images/icons/audit.svg" alt="Audit">
+                    </div>
+                    <h3 class="service-title">Audit</h3>
+                    <p>Analyse approfondie de vos processus actuels pour identifier les opportunités d'automatisation et d'intégration d'IA qui généreront le plus de valeur pour votre organisation.</p>
+                    <ul class="service-features">
+                        <li>Cartographie des processus métier</li>
+                        <li>Analyse des coûts et du temps</li>
+                        <li>Identification des priorités</li>
+                    </ul>
                 </div>
+
                 <div class="service-card" data-scroll>
-                    <div class="service-icon">⚙️</div>
-                    <h3 class="service-title">Process Automation</h3>
-                    <p>Identify and automate repetitive tasks to free up your team's time for strategic initiatives.</p>
+                    <div class="service-icon">
+                        <img src="assets/images/icons/conseil.svg" alt="Conseil">
+                    </div>
+                    <h3 class="service-title">Conseil</h3>
+                    <p>Accompagnement personnalisé pour définir votre stratégie d'automatisation et créer une feuille de route adaptée à vos besoins spécifiques et à votre capacité de transformation.</p>
+                    <ul class="service-features">
+                        <li>Plan de transformation digitale</li>
+                        <li>Sélection des technologies</li>
+                        <li>Gestion du changement</li>
+                    </ul>
                 </div>
+
                 <div class="service-card" data-scroll>
-                    <div class="service-icon">📊</div>
-                    <h3 class="service-title">Business Intelligence</h3>
-                    <p>Transform your data into actionable insights with custom AI-driven analytics solutions.</p>
+                    <div class="service-icon">
+                        <img src="assets/images/icons/deploiement.svg" alt="Déploiement">
+                    </div>
+                    <h3 class="service-title">Déploiement</h3>
+                    <p>Mise en œuvre technique des solutions d'automatisation et d'IA, intégration avec vos systèmes existants, et formation de vos équipes pour assurer une adoption réussie.</p>
+                    <ul class="service-features">
+                        <li>Développement sur mesure</li>
+                        <li>Intégration de systèmes</li>
+                        <li>Formation et support</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section class="section" id="about">
-            <h2 class="section-title">Why Choose Us</h2>
-            <p style="max-width: 800px; margin-bottom: 40px; line-height: 1.8; font-size: 18px;">
-                We combine technical expertise with business acumen to deliver solutions that drive real results. Our team of experts works closely with you to understand your unique challenges and design custom automation and AI strategies that align with your goals.
-            </p>
+        <!-- Methodology Section -->
+        <section class="section" id="methodologie">
+            <div class="section-header">
+                <h2 class="section-title">Notre Méthodologie</h2>
+                <p class="section-subtitle">Une approche progressive pour une transformation réussie</p>
+            </div>
+            <div class="methodology-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">01</div>
+                    <div class="timeline-content">
+                        <h3>Analyse des Besoins</h3>
+                        <p>Nous commençons par comprendre vos processus métier, vos défis actuels et vos objectifs stratégiques.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">02</div>
+                    <div class="timeline-content">
+                        <h3>Identification des Opportunités</h3>
+                        <p>Nous identifions les processus qui bénéficieront le plus de l'automatisation et de l'IA, en mettant l'accent sur le ROI.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">03</div>
+                    <div class="timeline-content">
+                        <h3>Conception de Solutions</h3>
+                        <p>Nous concevons des solutions sur mesure qui s'intègrent parfaitement à votre environnement existant.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">04</div>
+                    <div class="timeline-content">
+                        <h3>Implémentation Progressive</h3>
+                        <p>Nous déployons les solutions par phases pour minimiser les perturbations et permettre une adaptation en douceur.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">05</div>
+                    <div class="timeline-content">
+                        <h3>Formation et Accompagnement</h3>
+                        <p>Nous formons vos équipes et les accompagnons dans l'adoption des nouvelles technologies et méthodes de travail.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases Section -->
+        <section class="section alt-bg" id="cas-usage">
+            <div class="section-header">
+                <h2 class="section-title">Cas d'Usage</h2>
+                <p class="section-subtitle">Des solutions concrètes pour des besoins réels</p>
+            </div>
+            <div class="use-cases">
+                <div class="use-case-card">
+                    <div class="use-case-icon"></div>
+                    <h3>Service Client Augmenté</h3>
+                    <p>Implémentation d'assistants IA pour traiter automatiquement jusqu'à 95% des demandes clients basées sur votre FAQ, ne laissant que les cas complexes à vos équipes humaines.</p>
+                    <div class="use-case-result">
+                        <span>Résultat:</span> Réduction de 70% du temps de réponse et amélioration de la satisfaction client.
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-icon"></div>
+                    <h3>Automatisation des Flux de Travail</h3>
+                    <p>Automatisation des processus métier manuels comme la saisie de données, le traitement de documents et la génération de rapports.</p>
+                    <div class="use-case-result">
+                        <span>Résultat:</span> Réduction de 85% du temps consacré aux tâches administratives.
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-icon"></div>
+                    <h3>Intelligence Décisionnelle</h3>
+                    <p>Mise en place de tableaux de bord analytiques alimentés par l'IA pour transformer vos données en informations exploitables.</p>
+                    <div class="use-case-result">
+                        <span>Résultat:</span> Amélioration de 40% de la précision des prévisions commerciales.
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-icon"></div>
+                    <h3>IA pour Excel et Outils Bureautiques</h3>
+                    <p>Intégration de fonctionnalités d'IA dans vos outils quotidiens pour automatiser l'analyse de données et la génération de contenu.</p>
+                    <div class="use-case-result">
+                        <span>Résultat:</span> Gain de productivité de 60% sur les tâches d'analyse.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="section" id="pourquoi-nous">
+            <div class="section-header">
+                <h2 class="section-title">Pourquoi Nous Choisir</h2>
+                <p class="section-subtitle">Notre approche centrée sur l'humain nous différencie</p>
+            </div>
+            <div class="value-propositions">
+                <div class="value-prop">
+                    <h3>Expertise Technique & Métier</h3>
+                    <p>Notre équipe combine une expertise technique pointue avec une compréhension approfondie des enjeux métier pour concevoir des solutions vraiment adaptées à vos besoins.</p>
+                </div>
+
+                <div class="value-prop">
+                    <h3>Focus sur la Transition</h3>
+                    <p>Nous mettons l'accent sur l'accompagnement au changement pour assurer une transition digitale en douceur, en impliquant vos équipes dès le début du processus.</p>
+                </div>
+
+                <div class="value-prop">
+                    <h3>Approche Pragmatique</h3>
+                    <p>Nous privilégions des solutions concrètes à déploiement rapide, avec un retour sur investissement mesurable plutôt que des concepts théoriques.</p>
+                </div>
+
+                <div class="value-prop">
+                    <h3>Innovation Responsable</h3>
+                    <p>Nous intégrons l'IA de manière éthique et responsable, en valorisant les compétences humaines plutôt qu'en cherchant à les remplacer.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section cta-section">
+            <div class="cta-content">
+                <h2>Prêt à Transformer Votre Entreprise?</h2>
+                <p>Contactez-nous dès aujourd'hui pour une consultation gratuite et découvrez comment l'automatisation intelligente peut révolutionner votre organisation.</p>
+                <button class="cta-button large">Démarrer Votre Transformation</button>
+            </div>
         </section>
 
         <!-- Contact Section -->
         <section class="section" id="contact">
-            <h2 class="section-title">Start Your Transformation</h2>
-            <p style="max-width: 800px; margin-bottom: 40px; line-height: 1.8; font-size: 18px;">
-                Ready to revolutionize your business operations? Get in touch with our team to schedule a free consultation and discover how AI-powered automation can transform your organization.
-            </p>
-            <button class="cta-button">Contact Us</button>
+            <div class="section-header">
+                <h2 class="section-title">Contactez-Nous</h2>
+                <p class="section-subtitle">Parlons de vos besoins spécifiques</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Nom</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Entreprise</label>
+                            <input type="text" id="company" name="company" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button">Envoyer</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <img src="assets/images/icons/email.svg" alt="Email">
+                        </div>
+                        <p>contact@nexai.fr</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <img src="assets/images/icons/phone.svg" alt="Téléphone">
+                        </div>
+                        <p>+33 (0)4 XX XX XX XX</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <img src="assets/images/icons/location.svg" alt="Adresse">
+                        </div>
+                        <p>69 Avenue de la liberté, 69000</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Footer -->
         <footer class="footer">
-            <p>&copy; 2025 AutomateAI. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#" class="logo">NexAI</a>
+                    <p>Transformation digitale & automatisation intelligente</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#services">Audit</a></li>
+                            <li><a href="#services">Conseil</a></li>
+                            <li><a href="#services">Déploiement</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Entreprise</h4>
+                        <ul>
+                            <li><a href="#methodologie">Notre Approche</a></li>
+                            <li><a href="#pourquoi-nous">Pourquoi Nous</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Légal</h4>
+                        <ul>
+                            <li><a href="#">Mentions Légales</a></li>
+                            <li><a href="#">Politique de Confidentialité</a></li>
+                            <li><a href="#">CGU</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NexAI. Tous droits réservés.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">LinkedIn</a>
+                    <a href="#" class="social-link">Twitter</a>
+                </div>
+            </div>
         </footer>
     </div>
 
-    <script>
-        // Three.js Scene Setup
-        let scene, camera, renderer;
-        let particles, mouseX = 0, mouseY = 0;
-        let windowHalfX = window.innerWidth / 2;
-        let windowHalfY = window.innerHeight / 2;
-        let targetScrollY = 0;
-        let currentScrollY = 0;
-
-        function init() {
-            // Scene Setup
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.z = 30;
-
-            // Renderer Setup
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
-            document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-            // Particle System Setup
-            const particleCount = 1500;
-            const geometry = new THREE.BufferGeometry();
-            const positions = new Float32Array(particleCount * 3);
-            const scales = new Float32Array(particleCount);
-
-            const material = new THREE.ShaderMaterial({
-                uniforms: {
-                    color: { value: new THREE.Color(0x0de1ec) },
-                    time: { value: 0 }
-                },
-                vertexShader: `
-                    attribute float scale;
-                    uniform float time;
-                    void main() {
-                        vec3 pos = position;
-                        pos.y += sin(time * 0.2 + position.x * 0.05) * 0.5;
-                        pos.x += cos(time * 0.2 + position.z * 0.05) * 0.5;
-                        vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-                        gl_PointSize = scale * (300.0 / -mvPosition.z);
-                        gl_Position = projectionMatrix * mvPosition;
-                    }
-                `,
-                fragmentShader: `
-                    uniform vec3 color;
-                    void main() {
-                        if (length(gl_PointCoord - vec2(0.5, 0.5)) > 0.475) discard;
-                        gl_FragColor = vec4(color, 0.7);
-                    }
-                `,
-                transparent: true
-            });
-
-            for (let i = 0; i < particleCount; i++) {
-                positions[i * 3] = (Math.random() - 0.5) * 100;
-                positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
-                positions[i * 3 + 2] = (Math.random() - 0.5) * 100;
-                scales[i] = Math.random() * 2 + 1;
-            }
-
-            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            geometry.setAttribute('scale', new THREE.BufferAttribute(scales, 1));
-
-            particles = new THREE.Points(geometry, material);
-            scene.add(particles);
-
-            // Event Listeners
-            window.addEventListener('resize', onWindowResize);
-            document.addEventListener('mousemove', onDocumentMouseMove);
-            window.addEventListener('scroll', onScroll);
-
-            // Start Animation Loop
-            animate();
-        }
-
-        function onWindowResize() {
-            windowHalfX = window.innerWidth / 2;
-            windowHalfY = window.innerHeight / 2;
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
-        function onDocumentMouseMove(event) {
-            mouseX = (event.clientX - windowHalfX) * 0.05;
-            mouseY = (event.clientY - windowHalfY) * 0.05;
-        }
-
-        function onScroll() {
-            targetScrollY = window.scrollY;
-
-            // Handle navbar state
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-
-            // Smooth scroll effect
-            currentScrollY += (targetScrollY - currentScrollY) * 0.1;
-
-            // Rotate particles based on mouse position and scroll
-            particles.rotation.x = mouseY * 0.01 + currentScrollY * 0.001;
-            particles.rotation.y = mouseX * 0.01 + currentScrollY * 0.001;
-
-            // Update particle shader time
-            particles.material.uniforms.time.value += 0.01;
-
-            // Render scene
-            renderer.render(scene, camera);
-        }
-
-        // Initialize Three.js scene
-        window.addEventListener('load', init);
-    </script>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script src="js/three-animation.js"></script>
+    <script src="js/scroll-effects.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
