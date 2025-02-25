@@ -43,7 +43,7 @@ automation-landing-page/
 
 1. Clonez ce dépôt
 ```
-git clone https://github.com/votre-utilisateur/nexai-landing-page.git
+git clone https://github.com/Dallolz/nexai-landing-page.git
 ```
 
 2. Ouvrez le fichier `index.html` dans votre navigateur pour un développement local
@@ -51,7 +51,7 @@ git clone https://github.com/votre-utilisateur/nexai-landing-page.git
 ## Déploiement
 
 Le site est actuellement déployé sur GitHub Pages et est accessible à l'adresse:
-https://votre-utilisateur.github.io/nexai-landing-page/
+https://Dallolz.github.io/nexai-landing-page/
 
 ## Développement
 
