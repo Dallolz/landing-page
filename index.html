@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutomateAI - Intelligent Business Solutions</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+            background-color: #0a0a0a;
+            color: #fff;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .scrolled {
+            background-color: rgba(10, 10, 10, 0.9);
+            padding: 15px 5%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0de1ec;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 40px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #0de1ec;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #0de1ec, #2563eb);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(13, 225, 236, 0.4);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 10%;
+        }
+
+        .hero h1 {
+            font-size: 54px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .highlight {
+            color: #0de1ec;
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 100px 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -15px;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, #0de1ec, #2563eb);
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(13, 225, 236, 0.2);
+        }
+
+        .service-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #0de1ec;
+        }
+
+        .service-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .footer {
+            padding: 60px 10%;
+            background-color: #0a0a0a;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <!-- Three.js Canvas Container -->
+    <div id="canvas-container"></div>
+
+    <!-- Content -->
+    <div class="content">
+        <!-- Navigation -->
+        <nav id="navbar">
+            <a href="#" class="logo">AutomateAI</a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button class="cta-button">Get Started</button></li>
+            </ul>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <h1>Unlock Your Business Potential with <span class="highlight">AI-Powered Automation</span></h1>
+            <p>We help companies optimize workflows, automate repetitive tasks, and implement AI solutions to focus on high-value activities that drive growth.</p>
+            <button class="cta-button">Discover How</button>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section" id="services">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services">
+                <div class="service-card" data-scroll>
+                    <div class="service-icon">🤖</div>
+                    <h3 class="service-title">AI Integration</h3>
+                    <p>Implement AI assistants that can handle up to 95% of customer inquiries through your existing FAQ systems.</p>
+                </div>
+                <div class="service-card" data-scroll>
+                    <div class="service-icon">⚙️</div>
+                    <h3 class="service-title">Process Automation</h3>
+                    <p>Identify and automate repetitive tasks to free up your team's time for strategic initiatives.</p>
+                </div>
+                <div class="service-card" data-scroll>
+                    <div class="service-icon">📊</div>
+                    <h3 class="service-title">Business Intelligence</h3>
+                    <p>Transform your data into actionable insights with custom AI-driven analytics solutions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section" id="about">
+            <h2 class="section-title">Why Choose Us</h2>
+            <p style="max-width: 800px; margin-bottom: 40px; line-height: 1.8; font-size: 18px;">
+                We combine technical expertise with business acumen to deliver solutions that drive real results. Our team of experts works closely with you to understand your unique challenges and design custom automation and AI strategies that align with your goals.
+            </p>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <h2 class="section-title">Start Your Transformation</h2>
+            <p style="max-width: 800px; margin-bottom: 40px; line-height: 1.8; font-size: 18px;">
+                Ready to revolutionize your business operations? Get in touch with our team to schedule a free consultation and discover how AI-powered automation can transform your organization.
+            </p>
+            <button class="cta-button">Contact Us</button>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 AutomateAI. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Three.js Scene Setup
+        let scene, camera, renderer;
+        let particles, mouseX = 0, mouseY = 0;
+        let windowHalfX = window.innerWidth / 2;
+        let windowHalfY = window.innerHeight / 2;
+        let targetScrollY = 0;
+        let currentScrollY = 0;
+
+        function init() {
+            // Scene Setup
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 30;
+
+            // Renderer Setup
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            // Particle System Setup
+            const particleCount = 1500;
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            const scales = new Float32Array(particleCount);
+
+            const material = new THREE.ShaderMaterial({
+                uniforms: {
+                    color: { value: new THREE.Color(0x0de1ec) },
+                    time: { value: 0 }
+                },
+                vertexShader: `
+                    attribute float scale;
+                    uniform float time;
+                    void main() {
+                        vec3 pos = position;
+                        pos.y += sin(time * 0.2 + position.x * 0.05) * 0.5;
+                        pos.x += cos(time * 0.2 + position.z * 0.05) * 0.5;
+                        vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+                        gl_PointSize = scale * (300.0 / -mvPosition.z);
+                        gl_Position = projectionMatrix * mvPosition;
+                    }
+                `,
+                fragmentShader: `
+                    uniform vec3 color;
+                    void main() {
+                        if (length(gl_PointCoord - vec2(0.5, 0.5)) > 0.475) discard;
+                        gl_FragColor = vec4(color, 0.7);
+                    }
+                `,
+                transparent: true
+            });
+
+            for (let i = 0; i < particleCount; i++) {
+                positions[i * 3] = (Math.random() - 0.5) * 100;
+                positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
+                positions[i * 3 + 2] = (Math.random() - 0.5) * 100;
+                scales[i] = Math.random() * 2 + 1;
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('scale', new THREE.BufferAttribute(scales, 1));
+
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+
+            // Event Listeners
+            window.addEventListener('resize', onWindowResize);
+            document.addEventListener('mousemove', onDocumentMouseMove);
+            window.addEventListener('scroll', onScroll);
+
+            // Start Animation Loop
+            animate();
+        }
+
+        function onWindowResize() {
+            windowHalfX = window.innerWidth / 2;
+            windowHalfY = window.innerHeight / 2;
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function onDocumentMouseMove(event) {
+            mouseX = (event.clientX - windowHalfX) * 0.05;
+            mouseY = (event.clientY - windowHalfY) * 0.05;
+        }
+
+        function onScroll() {
+            targetScrollY = window.scrollY;
+
+            // Handle navbar state
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Smooth scroll effect
+            currentScrollY += (targetScrollY - currentScrollY) * 0.1;
+
+            // Rotate particles based on mouse position and scroll
+            particles.rotation.x = mouseY * 0.01 + currentScrollY * 0.001;
+            particles.rotation.y = mouseX * 0.01 + currentScrollY * 0.001;
+
+            // Update particle shader time
+            particles.material.uniforms.time.value += 0.01;
+
+            // Render scene
+            renderer.render(scene, camera);
+        }
+
+        // Initialize Three.js scene
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
