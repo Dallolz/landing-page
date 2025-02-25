@@ -51,7 +51,7 @@ git clone https://github.com/Dallolz/nexai-landing-page.git
 ## Déploiement
 
 Le site est actuellement déployé sur GitHub Pages et est accessible à l'adresse:
-https://Dallolz.github.io/nexai-landing-page/
+https://dallolz.github.io/landing-page/
 
 ## Développement
 
