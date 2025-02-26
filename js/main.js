@@ -1,187 +1,230 @@
 // Main JavaScript for NexAI landing page
-
-// Wait for DOM to be loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize mobile navigation
-    initMobileNav();
-
-    // Initialize smooth scrolling
-    initSmoothScroll();
-
-    // Initialize contact form
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize all components
+    initNavigation();
     initContactForm();
-
-    // Initialize any other components
-    initComponents();
+    initObservers();
   });
 
-  // Mobile navigation toggle
-  function initMobileNav() {
-    const navToggle = document.getElementById('nav-toggle');
-    const navLinks = document.getElementById('nav-links');
+  document.addEventListener('DOMContentLoaded', function() {
+  // S'assurer que le titre est animé indépendamment des autres scripts
+  const titleLines = document.querySelectorAll('.title-animation');
 
-    if (!navToggle || !navLinks) return;
+  // Réinitialiser les styles pour s'assurer que l'animation se produit
+  titleLines.forEach(line => {
+    line.style.opacity = '0';
+    line.style.transform = 'translateY(40px)';
+  });
 
-    // Toggle navigation
-    navToggle.addEventListener('click', function() {
-      navToggle.classList.toggle('active');
-      navLinks.classList.toggle('active');
+  // Petite astuce pour forcer le navigateur à recalculer les styles
+  setTimeout(() => {
+    titleLines.forEach((line, index) => {
+      // Nettoyer les styles inline pour permettre à l'animation CSS de fonctionner
+      line.style.removeProperty('opacity');
+      line.style.removeProperty('transform');
     });
+  }, 100);
+});
 
-    // Close mobile menu when clicking on links
-    const links = navLinks.querySelectorAll('a');
-    links.forEach(link => {
-      link.addEventListener('click', function() {
-        navToggle.classList.remove('active');
-        navLinks.classList.remove('active');
+  // Mobile navigation
+  function initNavigation() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links-container');
+
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        // Toggle active class
+        navToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+
+        // Toggle body scroll lock
+        document.body.classList.toggle('nav-open');
       });
-    });
-  }
 
-  // Smooth scrolling to anchors
-  function initSmoothScroll() {
-    // Get all links that hash to an element
-    const scrollLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
-
-    scrollLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
-        // Prevent default anchor click behavior
-        e.preventDefault();
-
-        // Get the target element
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-
-        if (!targetElement) return;
-
-        // Calculate header height for offset
-        const headerHeight = document.querySelector('nav').offsetHeight;
-
-        // Get position of the target element
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-
-        // Smooth scroll to target
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
+      // Close menu when clicking on links
+      const links = navLinks.querySelectorAll('a');
+      links.forEach(link => {
+        link.addEventListener('click', () => {
+          navToggle.classList.remove('active');
+          navLinks.classList.remove('active');
+          document.body.classList.remove('nav-open');
         });
       });
-    });
+    }
   }
 
   // Contact form handling
   function initContactForm() {
     const form = document.getElementById('contact-form');
 
-    if (!form) return;
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
+        // Get form data
+        const formData = new FormData(form);
+        const formObject = {};
 
-      // Get form data
-      const formData = new FormData(form);
-      const formObject = {};
+        formData.forEach((value, key) => {
+          formObject[key] = value;
+        });
 
-      formData.forEach((value, key) => {
-        formObject[key] = value;
+        // Log form data (in production, you would send this to a server)
+        console.log('Form data:', formObject);
+
+        // Show success state with animation
+        showFormSuccess(form);
       });
 
-      // Here you would typically send the data to your server
-      // For demonstration purposes, we'll just log it and show a success message
-      console.log('Form submitted with data:', formObject);
+      // Add float label functionality for inputs
+      const formInputs = form.querySelectorAll('input, textarea');
+      formInputs.forEach(input => {
+        // Set initial state
+        if (input.value.trim() !== '') {
+          input.classList.add('has-value');
+        }
 
-      // Show success message
-      const successMsg = document.createElement('div');
-      successMsg.className = 'form-success';
-      successMsg.innerHTML = `
-        <h3>Merci pour votre message!</h3>
-        <p>Nous vous répondrons dans les plus brefs délais.</p>
-      `;
+        // Listen for focus and blur events
+        input.addEventListener('focus', () => {
+          input.parentElement.classList.add('focused');
+        });
+
+        input.addEventListener('blur', () => {
+          input.parentElement.classList.remove('focused');
+
+          // Check if input has value
+          if (input.value.trim() !== '') {
+            input.classList.add('has-value');
+          } else {
+            input.classList.remove('has-value');
+          }
+        });
+
+        // Listen for input events
+        input.addEventListener('input', () => {
+          if (input.value.trim() !== '') {
+            input.classList.add('has-value');
+          } else {
+            input.classList.remove('has-value');
+          }
+        });
+      });
+    }
+  }
+
+  // Show form success message
+  function showFormSuccess(form) {
+    // Create success message
+    const successMessage = document.createElement('div');
+    successMessage.className = 'form-success';
+    successMessage.innerHTML = `
+      <div class="success-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 4C12.95 4 4 12.95 4 24C4 35.05 12.95 44 24 44C35.05 44 44 35.05 44 24C44 12.95 35.05 4 24 4ZM20 34L10 24L12.83 21.17L20 28.34L35.17 13.17L38 16L20 34Z" fill="currentColor"/>
+        </svg>
+      </div>
+      <h3>Message envoyé !</h3>
+      <p>Merci pour votre message. Notre équipe vous contactera dans les plus brefs délais.</p>
+      <button type="button" class="cta-button primary send-another">Envoyer un autre message</button>
+    `;
+
+    // Hide form with animation
+    form.style.opacity = '0';
+    form.style.transform = 'translateY(20px)';
+
+    // Show success message after animation
+    setTimeout(() => {
+      // Save form HTML to restore it later
+      const formHTML = form.innerHTML;
 
       // Replace form with success message
       form.innerHTML = '';
-      form.appendChild(successMsg);
-    });
+      form.appendChild(successMessage);
+      form.style.opacity = '1';
+      form.style.transform = 'translateY(0)';
+
+      // Listen for "send another" button click
+      const resetButton = form.querySelector('.send-another');
+      if (resetButton) {
+        resetButton.addEventListener('click', () => {
+          // Hide success message
+          form.style.opacity = '0';
+          form.style.transform = 'translateY(20px)';
+
+          // Restore original form
+          setTimeout(() => {
+            form.innerHTML = formHTML;
+            form.style.opacity = '1';
+            form.style.transform = 'translateY(0)';
+
+            // Re-initialize form
+            initContactForm();
+          }, 300);
+        });
+      }
+    }, 300);
   }
 
-  // Initialize other components
-  function initComponents() {
-    // Add active class to current section in navigation
-    highlightCurrentSection();
-
-    // Initialize counter animations
-    initCounters();
+  // Intersection Observer for revealing elements
+  function initObservers() {
+    if ('IntersectionObserver' in window) {
+      // Create observers for different animation types
+      createFadeInObserver();
+      createProgressiveRevealObserver();
+    }
   }
 
-  // Highlight current section in navigation
-  function highlightCurrentSection() {
-    // Get all sections that have an ID
-    const sections = document.querySelectorAll('section[id]');
+  // Create observer for standard fade-in animations
+  function createFadeInObserver() {
+    const fadeElements = document.querySelectorAll('.fade-in');
 
-    // Listen for scroll events
-    window.addEventListener('scroll', function() {
-      // Get current scroll position
-      const scrollY = window.pageYOffset;
+    if (!fadeElements.length) return;
 
-      // Loop through sections to determine which one is in view
-      sections.forEach(section => {
-        const sectionId = section.getAttribute('id');
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100; // Offset for header
-
-        // Check if the section is in view
-        if (scrollY > sectionTop && scrollY < sectionTop + sectionHeight) {
-          // Remove active class from all links
-          document.querySelectorAll('.nav-links a').forEach(link => {
-            link.classList.remove('active');
-          });
-
-          // Add active class to corresponding navigation link
-          const activeLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
-          if (activeLink) {
-            activeLink.classList.add('active');
-          }
-        }
-      });
-    });
-  }
-
-  // Initialize counter animations
-  function initCounters() {
-    const counters = document.querySelectorAll('.counter');
-
-    if (!counters.length) return;
-
-    // Create observer
-    const observer = new IntersectionObserver(entries => {
+    const fadeObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const counter = entry.target;
-          const target = parseInt(counter.getAttribute('data-target'));
-          const speed = parseInt(counter.getAttribute('data-speed') || '200');
-          let count = 0;
-
-          const updateCount = () => {
-            const increment = target / speed;
-
-            if (count < target) {
-              count += increment;
-              counter.innerText = Math.ceil(count);
-              setTimeout(updateCount, 1);
-            } else {
-              counter.innerText = target;
-            }
-          };
-
-          updateCount();
-          observer.unobserve(counter);
+          entry.target.classList.add('revealed');
+          fadeObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.5 });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -10% 0px'
+    });
 
-    // Observe all counters
-    counters.forEach(counter => {
-      observer.observe(counter);
+    fadeElements.forEach(element => {
+      fadeObserver.observe(element);
+    });
+  }
+
+  // Create observer for progressive reveal animations
+  function createProgressiveRevealObserver() {
+    const progressiveElements = document.querySelectorAll('.progressive-reveal');
+
+    if (!progressiveElements.length) return;
+
+    const progressiveObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Get all child elements to animate
+          const children = entry.target.children;
+
+          // Animate each child with incremental delay
+          Array.from(children).forEach((child, index) => {
+            setTimeout(() => {
+              child.classList.add('revealed');
+            }, index * 100);
+          });
+
+          progressiveObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -10% 0px'
+    });
+
+    progressiveElements.forEach(element => {
+      progressiveObserver.observe(element);
     });
   }

@@ -1,11 +1,15 @@
-# NexAI - Landing Page
+# NexAI - Landing Page Style Outpost
 
 Site web pour NexAI, une entreprise spécialisée dans l'automatisation intelligente et l'intégration d'IA pour les entreprises françaises.
+
+## Description
+
+Ce projet est une landing page moderne inspirée du style de Outpost.design, avec des animations Three.js sophistiquées qui réagissent au mouvement de la souris et au défilement de la page.
 
 ## Structure du Projet
 
 ```
-automation-landing-page/
+nexai-landing-page/
 ├── index.html
 ├── css/
 │   ├── main.css
@@ -13,13 +17,13 @@ automation-landing-page/
 │   └── responsive.css
 ├── js/
 │   ├── main.js
-│   ├── three-animation.js
-│   └── scroll-effects.js
+│   ├── webgl.js
+│   ├── scroll.js
+│   └── cursor.js
 ├── assets/
 │   ├── fonts/
 │   └── images/
 │       ├── favicon.ico
-│       ├── logo.svg
 │       └── icons/
 └── README.md
 ```
@@ -27,17 +31,34 @@ automation-landing-page/
 ## Technologies Utilisées
 
 - HTML5, CSS3, JavaScript
-- Three.js pour les animations 3D
+- Three.js pour l'animation 3D interactive
 - GSAP pour les animations de défilement
-- Responsive design pour tous les appareils
+- Fonctionnalités modernes comme :
+  - Curseur personnalisé
+  - Effet de grain et de bruit
+  - Animation de particules en 3D
+  - Effets parallaxe
+  - Transitions fluides
 
-## Fonctionnalités
+## Fonctionnalités Principales
 
-- Animation 3D interactive en arrière-plan avec Three.js
-- Effets de parallaxe et animations au défilement
-- Navigation responsive
-- Formulaire de contact
-- Optimisé pour les performances
+### Animation Three.js
+- Réseau de particules 3D interactif qui réagit aux mouvements de la souris et au défilement
+- Connexions dynamiques entre les particules proches
+- Dégradé de couleurs entre bleu et turquoise pour correspondre à l'identité visuelle
+- Effet de profondeur et de parallaxe
+
+### Interface Utilisateur
+- Design minimaliste avec thème sombre et accents de couleur vibrants
+- Transitions et animations sophistiquées
+- Navigation élégante avec effets de survol
+- Composants interactifs avec retour visuel
+
+### Contenu
+- Présentation claire des services d'automatisation et d'IA
+- Méthodologie en étapes avec animation de timeline
+- Cas d'usage concrets avec résultats
+- Formulaire de contact intégré
 
 ## Installation
 
@@ -46,33 +67,44 @@ automation-landing-page/
 git clone https://github.com/dallolz/landing-page.git
 ```
 
-2. Ouvrez le fichier `index.html` dans votre navigateur pour un développement local
+2. Assurez-vous que tous les fichiers sont structurés comme indiqué ci-dessus
+
+3. Ouvrez le fichier `index.html` dans votre navigateur pour un développement local
 
 ## Déploiement
 
 Le site est actuellement déployé sur GitHub Pages et est accessible à l'adresse:
 https://dallolz.github.io/landing-page/
 
-## Développement
+## Optimisation
 
-### Prérequis
+Le site a été optimisé pour :
+- Des performances fluides sur différents appareils
+- Une animation 3D optimisée qui s'adapte à la puissance de l'appareil
+- Un design responsive qui fonctionne sur mobile, tablette et desktop
+- Un chargement progressif avec écran de chargement
 
-- Connaissance de base de HTML, CSS et JavaScript
-- Compréhension des concepts de Three.js pour modifier les animations 3D
+## Personnalisation
 
-### Étendre le Projet
+### Couleurs
+Les couleurs principales peuvent être modifiées en ajustant les variables CSS dans `css/main.css` :
+```css
+:root {
+  --accent-blue: #0063fa;
+  --accent-teal: #00d4c8;
+  /* autres couleurs... */
+}
+```
 
-Pour ajouter de nouvelles fonctionnalités ou sections:
-
-1. Ajoutez votre contenu HTML dans `index.html`
-2. Ajoutez les styles associés dans les fichiers CSS appropriés
-3. Pour les fonctionnalités JavaScript, étendez les fichiers JS existants ou créez-en de nouveaux
-
-## Todo
-
-- Ajouter un blog pour partager des articles sur l'IA et l'automatisation
-- Implémenter une section portfolio avec des études de cas
-- Ajouter un système de gestion de contenu pour faciliter les mises à jour
+### Animation Three.js
+L'animation peut être personnalisée en modifiant les paramètres dans `js/webgl.js` :
+```javascript
+this.colors = {
+  bgColor: 0x080816,
+  particleColor1: 0x0063fa, // Blue
+  particleColor2: 0x00d4c8, // Teal
+};
+```
 
 ## Licence
 

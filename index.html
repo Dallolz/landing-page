@@ -3,333 +3,492 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexAI - Transformation Digitale & Automatisation Intelligente</title>
+    <title>NexAI - Automatisation Intelligente</title>
     <meta name="description" content="Solutions d'automatisation et d'IA pour les entreprises françaises. Audits, conseils et déploiement pour transformer vos processus métier.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 </head>
 <body>
-    <!-- Three.js Canvas Container -->
-    <div id="canvas-container"></div>
+    <!-- Canvas Container -->
+    <canvas id="webgl"></canvas>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Grain Overlay -->
+    <div class="grain"></div>
+
+    <!-- Loading Screen -->
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-logo">N</div>
+            <div class="loader-progress">
+                <div class="loader-bar"></div>
+            </div>
+            <div class="loader-text">Chargement de l'expérience</div>
+        </div>
+    </div>
 
     <!-- Content -->
     <div class="content">
         <!-- Navigation -->
-        <nav id="navbar">
-            <a href="#" class="logo">NexAI</a>
-            <div class="nav-toggle" id="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#methodologie">Méthodologie</a></li>
-                <li><a href="#cas-usage">Cas d'Usage</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><button class="cta-button">Démarrer</button></li>
-            </ul>
-        </nav>
-
-        <!-- Hero Section -->
-        <section class="hero" id="hero">
-            <div class="hero-content">
-                <h1>Libérez le potentiel de votre entreprise grâce à <span class="highlight">l'Automatisation Intelligente</span></h1>
-                <p>Nous accompagnons les entreprises françaises dans leur transition digitale en optimisant les processus métier, en automatisant les tâches répétitives, et en implémentant des solutions d'IA pour vous permettre de vous concentrer sur les activités à forte valeur ajoutée.</p>
-                <div class="hero-cta">
-                    <button class="cta-button primary">Découvrir Comment</button>
-                    <button class="cta-button secondary">Nos Solutions</button>
-                </div>
-            </div>
-            <div class="hero-scroll-indicator">
-                <span>Découvrir</span>
-                <div class="scroll-arrow"></div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section class="section" id="services">
-            <div class="section-header">
-                <h2 class="section-title">Nos Services</h2>
-                <p class="section-subtitle">Une approche complète pour transformer votre entreprise</p>
-            </div>
-            <div class="services-container">
-                <div class="service-card" data-scroll>
-                    <div class="service-icon">
-                        <img src="assets/images/icons/audit.svg" alt="Audit">
+        <header>
+            <nav>
+                <div class="nav-container">
+                    <a href="#" class="logo">
+                        <span class="logo-dot"></span>NexAI
+                    </a>
+                    <div class="nav-toggle" id="nav-toggle">
+                        <div class="toggle-line"></div>
+                        <div class="toggle-line"></div>
                     </div>
-                    <h3 class="service-title">Audit</h3>
-                    <p>Analyse approfondie de vos processus actuels pour identifier les opportunités d'automatisation et d'intégration d'IA qui généreront le plus de valeur pour votre organisation.</p>
-                    <ul class="service-features">
-                        <li>Cartographie des processus métier</li>
-                        <li>Analyse des coûts et du temps</li>
-                        <li>Identification des priorités</li>
-                    </ul>
-                </div>
-
-                <div class="service-card" data-scroll>
-                    <div class="service-icon">
-                        <img src="assets/images/icons/conseil.svg" alt="Conseil">
-                    </div>
-                    <h3 class="service-title">Conseil</h3>
-                    <p>Accompagnement personnalisé pour définir votre stratégie d'automatisation et créer une feuille de route adaptée à vos besoins spécifiques et à votre capacité de transformation.</p>
-                    <ul class="service-features">
-                        <li>Plan de transformation digitale</li>
-                        <li>Sélection des technologies</li>
-                        <li>Gestion du changement</li>
-                    </ul>
-                </div>
-
-                <div class="service-card" data-scroll>
-                    <div class="service-icon">
-                        <img src="assets/images/icons/deploiement.svg" alt="Déploiement">
-                    </div>
-                    <h3 class="service-title">Déploiement</h3>
-                    <p>Mise en œuvre technique des solutions d'automatisation et d'IA, intégration avec vos systèmes existants, et formation de vos équipes pour assurer une adoption réussie.</p>
-                    <ul class="service-features">
-                        <li>Développement sur mesure</li>
-                        <li>Intégration de systèmes</li>
-                        <li>Formation et support</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Methodology Section -->
-        <section class="section" id="methodologie">
-            <div class="section-header">
-                <h2 class="section-title">Notre Méthodologie</h2>
-                <p class="section-subtitle">Une approche progressive pour une transformation réussie</p>
-            </div>
-            <div class="methodology-timeline">
-                <div class="timeline-item">
-                    <div class="timeline-number">01</div>
-                    <div class="timeline-content">
-                        <h3>Analyse des Besoins</h3>
-                        <p>Nous commençons par comprendre vos processus métier, vos défis actuels et vos objectifs stratégiques.</p>
+                    <div class="nav-links-container">
+                        <ul class="nav-links">
+                            <li><a href="#services" data-text="Services">Services</a></li>
+                            <li><a href="#approche" data-text="Approche">Approche</a></li>
+                            <li><a href="#cas-usage" data-text="Cas d'Usage">Cas d'Usage</a></li>
+                            <li><a href="#contact" data-text="Contact">Contact</a></li>
+                        </ul>
+                        <a href="#contact" class="cta-button primary">Démarrer votre projet</a>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-number">02</div>
-                    <div class="timeline-content">
-                        <h3>Identification des Opportunités</h3>
-                        <p>Nous identifions les processus qui bénéficieront le plus de l'automatisation et de l'IA, en mettant l'accent sur le ROI.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-number">03</div>
-                    <div class="timeline-content">
-                        <h3>Conception de Solutions</h3>
-                        <p>Nous concevons des solutions sur mesure qui s'intègrent parfaitement à votre environnement existant.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-number">04</div>
-                    <div class="timeline-content">
-                        <h3>Implémentation Progressive</h3>
-                        <p>Nous déployons les solutions par phases pour minimiser les perturbations et permettre une adaptation en douceur.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-number">05</div>
-                    <div class="timeline-content">
-                        <h3>Formation et Accompagnement</h3>
-                        <p>Nous formons vos équipes et les accompagnons dans l'adoption des nouvelles technologies et méthodes de travail.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </nav>
+        </header>
 
-        <!-- Use Cases Section -->
-        <section class="section alt-bg" id="cas-usage">
-            <div class="section-header">
-                <h2 class="section-title">Cas d'Usage</h2>
-                <p class="section-subtitle">Des solutions concrètes pour des besoins réels</p>
-            </div>
-            <div class="use-cases">
-                <div class="use-case-card">
-                    <div class="use-case-icon"></div>
-                    <h3>Service Client Augmenté</h3>
-                    <p>Implémentation d'assistants IA pour traiter automatiquement jusqu'à 95% des demandes clients basées sur votre FAQ, ne laissant que les cas complexes à vos équipes humaines.</p>
-                    <div class="use-case-result">
-                        <span>Résultat:</span> Réduction de 70% du temps de réponse et amélioration de la satisfaction client.
-                    </div>
-                </div>
-
-                <div class="use-case-card">
-                    <div class="use-case-icon"></div>
-                    <h3>Automatisation des Flux de Travail</h3>
-                    <p>Automatisation des processus métier manuels comme la saisie de données, le traitement de documents et la génération de rapports.</p>
-                    <div class="use-case-result">
-                        <span>Résultat:</span> Réduction de 85% du temps consacré aux tâches administratives.
-                    </div>
-                </div>
-
-                <div class="use-case-card">
-                    <div class="use-case-icon"></div>
-                    <h3>Intelligence Décisionnelle</h3>
-                    <p>Mise en place de tableaux de bord analytiques alimentés par l'IA pour transformer vos données en informations exploitables.</p>
-                    <div class="use-case-result">
-                        <span>Résultat:</span> Amélioration de 40% de la précision des prévisions commerciales.
-                    </div>
-                </div>
-
-                <div class="use-case-card">
-                    <div class="use-case-icon"></div>
-                    <h3>IA pour Excel et Outils Bureautiques</h3>
-                    <p>Intégration de fonctionnalités d'IA dans vos outils quotidiens pour automatiser l'analyse de données et la génération de contenu.</p>
-                    <div class="use-case-result">
-                        <span>Résultat:</span> Gain de productivité de 60% sur les tâches d'analyse.
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Why Choose Us Section -->
-        <section class="section" id="pourquoi-nous">
-            <div class="section-header">
-                <h2 class="section-title">Pourquoi Nous Choisir</h2>
-                <p class="section-subtitle">Notre approche centrée sur l'humain nous différencie</p>
-            </div>
-            <div class="value-propositions">
-                <div class="value-prop">
-                    <h3>Expertise Technique & Métier</h3>
-                    <p>Notre équipe combine une expertise technique pointue avec une compréhension approfondie des enjeux métier pour concevoir des solutions vraiment adaptées à vos besoins.</p>
-                </div>
-
-                <div class="value-prop">
-                    <h3>Focus sur la Transition</h3>
-                    <p>Nous mettons l'accent sur l'accompagnement au changement pour assurer une transition digitale en douceur, en impliquant vos équipes dès le début du processus.</p>
-                </div>
-
-                <div class="value-prop">
-                    <h3>Approche Pragmatique</h3>
-                    <p>Nous privilégions des solutions concrètes à déploiement rapide, avec un retour sur investissement mesurable plutôt que des concepts théoriques.</p>
-                </div>
-
-                <div class="value-prop">
-                    <h3>Innovation Responsable</h3>
-                    <p>Nous intégrons l'IA de manière éthique et responsable, en valorisant les compétences humaines plutôt qu'en cherchant à les remplacer.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="section cta-section">
-            <div class="cta-content">
-                <h2>Prêt à Transformer Votre Entreprise?</h2>
-                <p>Contactez-nous dès aujourd'hui pour une consultation gratuite et découvrez comment l'automatisation intelligente peut révolutionner votre organisation.</p>
-                <button class="cta-button large">Démarrer Votre Transformation</button>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="section" id="contact">
-            <div class="section-header">
-                <h2 class="section-title">Contactez-Nous</h2>
-                <p class="section-subtitle">Parlons de vos besoins spécifiques</p>
-            </div>
-            <div class="contact-container">
-                <div class="contact-form">
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <label for="name">Nom</label>
-                            <input type="text" id="name" name="name" required>
+        <!-- Main Content -->
+        <main>
+            <!-- Hero Section -->
+            <section class="hero" id="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="animated-title">
+                            <span class="title-line title-animation">Libérez le potentiel</span>
+                            <span class="title-line title-animation">de votre entreprise grâce à</span>
+                            <span class="title-line title-animation gradient-text">l'Automatisation Intelligente</span>
+                        </h1>
+                        <p class="hero-description">
+                            Nous accompagnons les entreprises françaises dans leur transition digitale
+                            en optimisant les processus métier et en implémentant des solutions d'IA
+                            pour vous permettre de vous concentrer sur les activités à forte valeur ajoutée.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="#services" class="cta-button primary">Découvrir nos solutions</a>
+                            <a href="#contact" class="cta-button secondary">Prendre rendez-vous</a>
                         </div>
-                        <div class="form-group">
-                            <label for="company">Entreprise</label>
-                            <input type="text" id="company" name="company" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Téléphone</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        <div class="form-group full-width">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="cta-button">Envoyer</button>
-                    </form>
-                </div>
-                <div class="contact-info">
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <img src="assets/images/icons/email.svg" alt="Email">
-                        </div>
-                        <p>contact@nexai.fr</p>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <img src="assets/images/icons/phone.svg" alt="Téléphone">
-                        </div>
-                        <p>+33 (0)4 XX XX XX XX</p>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <img src="assets/images/icons/location.svg" alt="Adresse">
-                        </div>
-                        <p>69 Avenue de la liberté, 69000</p>
                     </div>
                 </div>
-            </div>
-        </section>
+                <div class="scroll-indicator">
+                    <div class="scroll-text">Scroll</div>
+                    <div class="scroll-line"></div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section class="section" id="services">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-label">Services</span>
+                        <h2 class="section-title">Notre expertise à votre service</h2>
+                    </div>
+
+                    <div class="services-grid">
+                        <div class="service-card" data-cursor-text="Explorez">
+                            <div class="service-number">01</div>
+                            <div class="service-content">
+                                <h3 class="service-title">Audit</h3>
+                                <p class="service-description">
+                                    Analyse approfondie de vos processus actuels pour identifier les opportunités d'automatisation et d'intégration d'IA qui généreront le plus de valeur pour votre organisation.
+                                </p>
+                                <ul class="service-features">
+                                    <li>Cartographie des processus métier</li>
+                                    <li>Analyse des coûts et du temps</li>
+                                    <li>Identification des priorités</li>
+                                </ul>
+                            </div>
+                            <div class="service-icon">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 5C11.729 5 5 11.729 5 20C5 28.271 11.729 35 20 35C28.271 35 35 28.271 35 20C35 11.729 28.271 5 20 5ZM20 32.5C13.107 32.5 7.5 26.893 7.5 20C7.5 13.107 13.107 7.5 20 7.5C26.893 7.5 32.5 13.107 32.5 20C32.5 26.893 26.893 32.5 20 32.5Z" fill="currentColor"/>
+                                    <path d="M27.5 18.75H21.25V12.5C21.25 11.81 20.69 11.25 20 11.25C19.31 11.25 18.75 11.81 18.75 12.5V18.75H12.5C11.81 18.75 11.25 19.31 11.25 20C11.25 20.69 11.81 21.25 12.5 21.25H18.75V27.5C18.75 28.19 19.31 28.75 20 28.75C20.69 28.75 21.25 28.19 21.25 27.5V21.25H27.5C28.19 21.25 28.75 20.69 28.75 20C28.75 19.31 28.19 18.75 27.5 18.75Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="service-card" data-cursor-text="Explorez">
+                            <div class="service-number">02</div>
+                            <div class="service-content">
+                                <h3 class="service-title">Conseil</h3>
+                                <p class="service-description">
+                                    Accompagnement personnalisé pour définir votre stratégie d'automatisation et créer une feuille de route adaptée à vos besoins spécifiques et à votre capacité de transformation.
+                                </p>
+                                <ul class="service-features">
+                                    <li>Plan de transformation digitale</li>
+                                    <li>Sélection des technologies</li>
+                                    <li>Gestion du changement</li>
+                                </ul>
+                            </div>
+                            <div class="service-icon">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M32.5 12.5H27.5V10C27.5 8.62 26.38 7.5 25 7.5H15C13.62 7.5 12.5 8.62 12.5 10V12.5H7.5C6.12 12.5 5 13.62 5 15V30C5 31.38 6.12 32.5 7.5 32.5H32.5C33.88 32.5 35 31.38 35 30V15C35 13.62 33.88 12.5 32.5 12.5ZM15 10H25V12.5H15V10ZM32.5 30H7.5V15H32.5V30Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="service-card" data-cursor-text="Explorez">
+                            <div class="service-number">03</div>
+                            <div class="service-content">
+                                <h3 class="service-title">Déploiement</h3>
+                                <p class="service-description">
+                                    Mise en œuvre technique des solutions d'automatisation et d'IA, intégration avec vos systèmes existants, et formation de vos équipes pour assurer une adoption réussie.
+                                </p>
+                                <ul class="service-features">
+                                    <li>Développement sur mesure</li>
+                                    <li>Intégration de systèmes</li>
+                                    <li>Formation et support</li>
+                                </ul>
+                            </div>
+                            <div class="service-icon">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M30 12.5L20 5L10 12.5V27.5L20 35L30 27.5V12.5ZM20 31.55L12.5 25.95V14.05L20 8.45L27.5 14.05V25.95L20 31.55Z" fill="currentColor"/>
+                                    <path d="M20 15C18.62 15 17.5 16.12 17.5 17.5C17.5 18.5 18.12 19.38 19 19.8V25C19 25.55 19.45 26 20 26C20.55 26 21 25.55 21 25V19.8C21.88 19.38 22.5 18.5 22.5 17.5C22.5 16.12 21.38 15 20 15Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Approche Section -->
+            <section class="section dark" id="approche">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-label">Approche</span>
+                        <h2 class="section-title">Une méthodologie éprouvée</h2>
+                    </div>
+
+                    <div class="approach-content">
+                        <div class="approach-timeline">
+                            <div class="timeline-line"></div>
+
+                            <div class="approach-step">
+                                <div class="step-number">01</div>
+                                <div class="step-content">
+                                    <h3>Analyse des Besoins</h3>
+                                    <p>Nous commençons par comprendre vos processus métier, vos défis actuels et vos objectifs stratégiques pour identifier les opportunités de transformation.</p>
+                                </div>
+                            </div>
+
+                            <div class="approach-step">
+                                <div class="step-number">02</div>
+                                <div class="step-content">
+                                    <h3>Identification des Opportunités</h3>
+                                    <p>Nous identifions les processus qui bénéficieront le plus de l'automatisation et de l'IA, en mettant l'accent sur le retour sur investissement.</p>
+                                </div>
+                            </div>
+
+                            <div class="approach-step">
+                                <div class="step-number">03</div>
+                                <div class="step-content">
+                                    <h3>Conception de Solutions</h3>
+                                    <p>Nous concevons des solutions sur mesure qui s'intègrent parfaitement à votre environnement existant tout en respectant vos contraintes.</p>
+                                </div>
+                            </div>
+
+                            <div class="approach-step">
+                                <div class="step-number">04</div>
+                                <div class="step-content">
+                                    <h3>Implémentation Progressive</h3>
+                                    <p>Nous déployons les solutions par phases pour minimiser les perturbations et permettre une adaptation en douceur de vos équipes.</p>
+                                </div>
+                            </div>
+
+                            <div class="approach-step">
+                                <div class="step-number">05</div>
+                                <div class="step-content">
+                                    <h3>Formation et Accompagnement</h3>
+                                    <p>Nous formons vos équipes et les accompagnons dans l'adoption des nouvelles technologies et méthodes de travail pour garantir leur succès.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cas d'Usage Section -->
+            <section class="section" id="cas-usage">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-label">Cas d'Usage</span>
+                        <h2 class="section-title">Applications concrètes</h2>
+                        <p class="section-subtitle">Des solutions éprouvées pour répondre à vos besoins spécifiques</p>
+                    </div>
+
+                    <div class="use-cases-slider">
+                        <div class="use-case-card">
+                            <div class="use-case-icon">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M35 5H5C3.62 5 2.5 6.12 2.5 7.5V27.5C2.5 28.88 3.62 30 5 30H16.25V32.5H12.5C11.81 32.5 11.25 33.06 11.25 33.75C11.25 34.44 11.81 35 12.5 35H27.5C28.19 35 28.75 34.44 28.75 33.75C28.75 33.06 28.19 32.5 27.5 32.5H23.75V30H35C36.38 30 37.5 28.88 37.5 27.5V7.5C37.5 6.12 36.38 5 35 5ZM5 7.5H35V27.5H5V7.5Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <h3>Service Client Augmenté</h3>
+                            <p>Implémentation d'assistants IA pour traiter automatiquement jusqu'à 95% des demandes clients basées sur votre FAQ, ne laissant que les cas complexes à vos équipes humaines.</p>
+                            <div class="use-case-result">
+                                <span>Résultat:</span> Réduction de 70% du temps de réponse et amélioration de la satisfaction client.
+                            </div>
+                        </div>
+
+                        <div class="use-case-card">
+                            <div class="use-case-icon">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M30 10H25V7.5C25 6.12 23.88 5 22.5 5H17.5C16.12 5 15 6.12 15 7.5V10H10C8.62 10 7.5 11.12 7.5 12.5V32.5C7.5 33.88 8.62 35 10 35H30C31.38 35 32.5 33.88 32.5 32.5V12.5C32.5 11.12 31.38 10 30 10ZM17.5 7.5H22.5V10H17.5V7.5ZM30 32.5H10V12.5H30V32.5Z" fill="currentColor"/>
+                                    <path d="M15 17.5H25V20H15V17.5ZM15 22.5H25V25H15V22.5ZM15 27.5H20V30H15V27.5Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <h3>Automatisation des Flux de Travail</h3>
+                            <p>Automatisation des processus métier manuels comme la saisie de données, le traitement de documents et la génération de rapports pour libérer vos collaborateurs.</p>
+                            <div class="use-case-result">
+                                <span>Résultat:</span> Réduction de 85% du temps consacré aux tâches administratives.
+                            </div>
+                        </div>
+
+                        <div class="use-case-card">
+                            <div class="use-case-icon">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M35 7.5H5C3.62 7.5 2.5 8.62 2.5 10V30C2.5 31.38 3.62 32.5 5 32.5H35C36.38 32.5 37.5 31.38 37.5 30V10C37.5 8.62 36.38 7.5 35 7.5ZM5 30V10H35V30H5Z" fill="currentColor"/>
+                                    <path d="M11.25 15H8.75V25H11.25V15ZM16.25 12.5H13.75V25H16.25V12.5ZM21.25 17.5H18.75V25H21.25V17.5ZM26.25 15H23.75V25H26.25V15ZM31.25 12.5H28.75V25H31.25V12.5Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <h3>Intelligence Décisionnelle</h3>
+                            <p>Mise en place de tableaux de bord analytiques alimentés par l'IA pour transformer vos données en informations exploitables et faciliter la prise de décision.</p>
+                            <div class="use-case-result">
+                                <span>Résultat:</span> Amélioration de 40% de la précision des prévisions commerciales.
+                            </div>
+                        </div>
+
+                        <div class="use-case-card">
+                            <div class="use-case-icon">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M32.5 5H7.5C6.12 5 5 6.12 5 7.5V32.5C5 33.88 6.12 35 7.5 35H32.5C33.88 35 35 33.88 35 32.5V7.5C35 6.12 33.88 5 32.5 5ZM7.5 32.5V7.5H32.5V32.5H7.5Z" fill="currentColor"/>
+                                    <path d="M12.5 12.5H17.5V17.5H12.5V12.5ZM12.5 22.5H17.5V27.5H12.5V22.5ZM22.5 12.5H27.5V17.5H22.5V12.5ZM22.5 22.5H27.5V27.5H22.5V22.5Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <h3>IA pour Excel et Outils Bureautiques</h3>
+                            <p>Intégration de fonctionnalités d'IA dans vos outils quotidiens pour automatiser l'analyse de données et la génération de contenu sans changer vos habitudes.</p>
+                            <div class="use-case-result">
+                                <span>Résultat:</span> Gain de productivité de 60% sur les tâches d'analyse.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="section cta-section">
+                <div class="container">
+                    <div class="cta-content">
+                        <h2 class="cta-title">Prêt à transformer votre entreprise?</h2>
+                        <p class="cta-description">Contactez-nous dès aujourd'hui pour une consultation gratuite et découvrez comment l'automatisation intelligente peut révolutionner votre organisation.</p>
+                        <a href="#contact" class="cta-button large">Démarrer votre transformation</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="section" id="contact">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-label">Contact</span>
+                        <h2 class="section-title">Parlons de votre projet</h2>
+                    </div>
+
+                    <div class="contact-container">
+                        <div class="contact-info">
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 18H4V8L12 13L20 8V18ZM12 11L4 6H20L12 11Z" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <div class="info-text">
+                                    <h3>Email</h3>
+                                    <p><a href="mailto:contact@nexai.fr">contact@nexai.fr</a></p>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 15.5C18.8 15.5 17.5 15.3 16.4 14.9C16.3 14.9 16.2 14.9 16.1 14.9C15.8 14.9 15.6 15 15.4 15.2L13.2 17.4C10.4 15.9 8 13.6 6.6 10.8L8.8 8.6C9.1 8.3 9.2 7.9 9 7.6C8.7 6.5 8.5 5.2 8.5 4C8.5 3.5 8 3 7.5 3H4C3.5 3 3 3.5 3 4C3 13.4 10.6 21 20 21C20.5 21 21 20.5 21 20V16.5C21 16 20.5 15.5 20 15.5ZM19 12H21C21 7 17 3 12 3V5C15.9 5 19 8.1 19 12ZM15 12H17C17 9.2 14.8 7 12 7V9C13.7 9 15 10.3 15 12Z" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <div class="info-text">
+                                    <h3>Téléphone</h3>
+                                    <p><a href="tel:+33100000000">+33 (0)1 XX XX XX XX</a></p>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <div class="info-text">
+                                    <h3>Adresse</h3>
+                                    <p>75 Avenue des Champs-Élysées<br>75008 Paris</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-form-container">
+                            <form id="contact-form" class="contact-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">Nom</label>
+                                        <input type="text" id="name" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="company">Entreprise</label>
+                                        <input type="text" id="company" name="company" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" name="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Téléphone</label>
+                                        <input type="tel" id="phone" name="phone">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" name="message" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="cta-button primary">Envoyer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
 
         <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <a href="#" class="logo">NexAI</a>
-                    <p>Transformation digitale & automatisation intelligente</p>
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <a href="#" class="logo">
+                            <span class="logo-dot"></span>NexAI
+                        </a>
+                        <p>Transformation digitale & automatisation intelligente</p>
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Navigation</h4>
+                            <ul>
+                                <li><a href="#services">Services</a></li>
+                                <li><a href="#approche">Approche</a></li>
+                                <li><a href="#cas-usage">Cas d'Usage</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Légal</h4>
+                            <ul>
+                                <li><a href="#">Mentions Légales</a></li>
+                                <li><a href="#">Politique de Confidentialité</a></li>
+                                <li><a href="#">CGU</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Social</h4>
+                            <div class="social-links">
+                                <a href="#" class="social-link">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM8.5 19H5.5V10H8.5V19ZM7 8.75C6.17 8.75 5.5 8.07 5.5 7.25C5.5 6.43 6.17 5.75 7 5.75C7.83 5.75 8.5 6.43 8.5 7.25C8.5 8.07 7.83 8.75 7 8.75ZM19 19H16V13.98C16 12.98 15.02 12 14.02 12C13.02 12 12 12.98 12 13.98V19H9V10H12V11.77C12.64 10.68 13.73 10 15 10C17.24 10 19 11.76 19 14V19Z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M22.46 6C21.69 6.35 20.86 6.58 20 6.69C20.88 6.16 21.56 5.32 21.88 4.31C21.05 4.81 20.13 5.16 19.16 5.36C18.37 4.5 17.26 4 16 4C13.65 4 11.73 5.92 11.73 8.29C11.73 8.63 11.77 8.96 11.84 9.27C8.28 9.09 5.11 7.38 3 4.79C2.63 5.42 2.42 6.16 2.42 6.94C2.42 8.43 3.17 9.75 4.33 10.5C3.62 10.5 2.96 10.3 2.38 10V10.03C2.38 12.11 3.86 13.85 5.82 14.24C5.46 14.34 5.08 14.39 4.69 14.39C4.42 14.39 4.15 14.36 3.89 14.31C4.43 16 6 17.26 7.89 17.29C6.43 18.45 4.58 19.13 2.56 19.13C2.22 19.13 1.88 19.11 1.54 19.07C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79C20.33 8.6 20.33 8.42 20.32 8.23C21.16 7.63 21.88 6.87 22.46 6Z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Services</h4>
-                        <ul>
-                            <li><a href="#services">Audit</a></li>
-                            <li><a href="#services">Conseil</a></li>
-                            <li><a href="#services">Déploiement</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Entreprise</h4>
-                        <ul>
-                            <li><a href="#methodologie">Notre Approche</a></li>
-                            <li><a href="#pourquoi-nous">Pourquoi Nous</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Légal</h4>
-                        <ul>
-                            <li><a href="#">Mentions Légales</a></li>
-                            <li><a href="#">Politique de Confidentialité</a></li>
-                            <li><a href="#">CGU</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 NexAI. Tous droits réservés.</p>
-                <div class="social-links">
-                    <a href="#" class="social-link">LinkedIn</a>
-                    <a href="#" class="social-link">Twitter</a>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 NexAI. Tous droits réservés.</p>
                 </div>
             </div>
         </footer>
     </div>
 
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+    <div class="cursor-text"></div>
+
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
-    <script src="js/three-animation.js"></script>
-    <script src="js/scroll-effects.js"></script>
+    <script>
+        // Title animation fix - Add this script tag right before your other scripts
+        document.addEventListener('DOMContentLoaded', function() {
+          // Remove any existing title animations initially
+          const titleLines = document.querySelectorAll('.title-animation');
+          titleLines.forEach(line => {
+            // Reset all animations and styles
+            line.style.animation = 'none';
+            line.style.opacity = '0';
+            line.style.transform = 'translateY(30px)';
+            line.style.transition = 'none';
+          });
+
+          // Observer to watch for the loader being hidden
+          const loader = document.querySelector('.loader');
+          if (loader) {
+            const observer = new MutationObserver(function(mutations) {
+              mutations.forEach(function(mutation) {
+                if (mutation.target.classList.contains('hidden')) {
+                  // When loader is hidden, animate titles with delay
+                  setTimeout(function() {
+                    titleLines.forEach((line, index) => {
+                      setTimeout(() => {
+                        line.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                        line.style.opacity = '1';
+                        line.style.transform = 'translateY(0)';
+                      }, index * 300 + 300);
+                    });
+
+                    // Add shimmer to gradient text after it appears
+                    const gradientText = document.querySelector('.gradient-text');
+                    if (gradientText) {
+                      setTimeout(() => {
+                        gradientText.classList.add('shimmer-animation');
+                      }, 1500);
+                    }
+                  }, 200);
+
+                  observer.disconnect();
+                }
+              });
+            });
+
+            observer.observe(loader, { attributes: true, attributeFilter: ['class'] });
+          }
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/webgl.js"></script>
+    <script src="js/scroll.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
